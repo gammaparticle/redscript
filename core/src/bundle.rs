@@ -119,7 +119,7 @@ pub struct ConstantPool {
     pub names: Names<String>,
     pub tweakdb_ids: Names<TweakDbId>,
     pub resources: Names<Resource>,
-    definitions: Vec<Definition>,
+    pub(crate) definitions: Vec<Definition>,
 }
 
 impl ConstantPool {
@@ -594,6 +594,7 @@ impl<A> PoolIndex<A> {
         self.value == 0
     }
 
+    #[inline(always)]
     pub fn cast<B>(&self) -> PoolIndex<B> {
         PoolIndex {
             value: self.value,
